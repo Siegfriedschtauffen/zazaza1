@@ -4,12 +4,13 @@
 <h4>{{ article.article_date }}</h4>
 <h2>{{ article.article_title }}</h2>
 <p>{{ article.article_text }}</p>
-<i><a href="/">Вернуться на главную страницу!</a></i>
 <hr>
     <div class="large-offset-1 large-8 columns">
 <p>Комментарии</p>
+    <div height="1" style="border-bottom: 1px dotted #000033; "></div>
 {% for comment in comments %}
    <p>{{ comment.comments_text }}</p>
+    <p align="right"> {{ comment.comments_author.username}} -{{comment.comments_date}}</p>
 {% endfor %}
    <div class="row">
         <div class="large-5 large-offset-5 columns">

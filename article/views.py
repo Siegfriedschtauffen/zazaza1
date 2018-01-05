@@ -66,7 +66,8 @@ def addlike(request, article_id):
             article = Article.objects.get(id=article_id)
             article.article_likes += 1
             article.save()
-            response = redirect(back_url)
+            return_path = request.META.get('HTTP_REFERER', '/')
+            response = redirect(return_path)
             response.set_cookie(article_id, 'value')
             return response
     except ObjectDoesNotExist:
@@ -94,6 +95,7 @@ def addcomment(request, article_id):
         form = CommentForm(request.POST)
         if form.is_valid():
             comment = form.save(commit=False)
+            comment.comments_author = request.user
             comment.comments_article = Article.objects.get(id=article_id)
             form.save()
             request.session.set_expiry(60)

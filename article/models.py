@@ -18,3 +18,5 @@ class Comments(models.Model):
 
     comments_text = models.TextField(verbose_name="Текст комментария")
     comments_article = models.ForeignKey(Article, on_delete=models.CASCADE)
+    comments_date = models.DateField('date',auto_now=True)
+    comments_author = models.ForeignKey(User, on_delete=models.CASCADE)

@@ -25,8 +25,9 @@ def login(request):
 
 
 def logout(request):
+    return_path = request.META.get('HTTP_REFERER', '/')
     auth.logout(request)
-    return redirect("/")
+    return redirect(return_path)
 
 def register(request):
     args = {}
